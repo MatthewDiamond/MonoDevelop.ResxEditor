@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="../bin/Release/MonoDevelop.ResxEditor.dll" internal="true" />
+  </import>
+  <widget class="Gtk.Bin" id="MonoDevelop.ResxEditor.ResxEditorWidget" design-size="542 378">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.VBox" id="verticalBox">
+        <property name="MemberName" />
+        <child>
+          <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment">
+            <property name="MemberName" />
+            <property name="Xalign">0</property>
+            <property name="Yalign">0</property>
+            <property name="LeftPadding">8</property>
+            <property name="TopPadding">16</property>
+            <property name="RightPadding">8</property>
+            <property name="BottomPadding">8</property>
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="scrolledWindow">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.Viewport" id="GtkViewport">
+                    <property name="MemberName" />
+                    <property name="ShadowType">None</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder />
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
