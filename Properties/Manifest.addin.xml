@@ -10,11 +10,6 @@
 	category="IDE extensions" 
 	version="1.0">
 
-	<Dependencies>
-		<Addin id="::MonoDevelop.Core" version="4.0" />
-		<Addin id="::MonoDevelop.Ide" version="4.0" />
-	</Dependencies>
-
 	<Extension path = "/MonoDevelop/Ide/DisplayBindings">
 		<DisplayBinding
 		id = "ResxEditor"
