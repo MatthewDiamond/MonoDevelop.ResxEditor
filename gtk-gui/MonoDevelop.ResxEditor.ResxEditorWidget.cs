@@ -5,7 +5,9 @@ namespace MonoDevelop.ResxEditor
 	public partial class ResxEditorWidget
 	{
 		private global::Gtk.VBox verticalBox;
+		
 		private global::Gtk.Alignment alignment;
+		
 		private global::Gtk.ScrolledWindow scrolledWindow;
 
 		protected virtual void Build ()

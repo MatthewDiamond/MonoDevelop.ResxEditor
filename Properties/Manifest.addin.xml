@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Addin 
-	namespace="MonoDevelop" 
-	id="ResxEditor" 
-	name="MonoDevelop Resx Editor"
-	author="Matthew Diamond"
-	url="https://github.com/MatthewDiamond/MonoDevelop.ResxEditor"
-	copyright="Matthew Diamond" 
-	description="Provides a resx editor for MonoDevelop"
-	category="IDE extensions" 
-	version="1.0">
-
-	<Extension path = "/MonoDevelop/Ide/DisplayBindings">
-		<DisplayBinding
-		id = "ResxEditor"
-		insertafter ="ResxDisplayBinding"
-		class = "MonoDevelop.ResxEditor.ResxEditorDisplayBinding" />
-	</Extension>	
+<Addin namespace="MonoDevelop" id="ResxEditor" name="MonoDevelop Resx Editor" author="Matthew Diamond" url="https://github.com/MatthewDiamond/MonoDevelop.ResxEditor" copyright="Matthew Diamond" description="Provides a resx editor for MonoDevelop" category="IDE extensions" version="1.0">
+	<Dependencies>
+		<Addin id="::MonoDevelop.Core" />
+		<Addin id="::MonoDevelop.Ide" />
+	</Dependencies>
+	<Extension path="/MonoDevelop/Ide/DisplayBindings">
+		<DisplayBinding id="ResxEditor" insertafter="ResxDisplayBinding" class="MonoDevelop.ResxEditor.ResxEditorDisplayBinding" />
+	</Extension>
 </Addin>

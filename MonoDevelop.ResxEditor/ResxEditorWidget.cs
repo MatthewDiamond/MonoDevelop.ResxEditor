@@ -13,7 +13,10 @@ namespace MonoDevelop.ResxEditor
 {
 	public partial class ResxEditorWidget : Bin
 	{
-		static AssemblyName[] assemblyNames = new AssemblyName[]{typeof(string).Assembly.GetName(), typeof(Icon).Assembly.GetName()};
+		static AssemblyName[] assemblyNames = new AssemblyName[] {
+			typeof(string).Assembly.GetName(),
+			typeof(Icon).Assembly.GetName()
+		};
 
 		Dictionary<string, ResXDataNode> resxNodeList;
 		ListStore audioListStore;
@@ -35,6 +38,7 @@ namespace MonoDevelop.ResxEditor
 		MenuToolButton addButton;
 		MenuToolButton typeToolButton;
 		OpenFileDialog openDialog;
+		EditStringDialog stringDialog;
 		ResxEditorView editorView;
 		ToolButton removeButton;
 		Toolbar mainToolbar;
@@ -52,13 +56,14 @@ namespace MonoDevelop.ResxEditor
 			resxNodeList = new Dictionary<string, ResXDataNode>();
 			editorView = view;
 
+			stringDialog = new EditStringDialog();
+
 			// MenuIteams
 			addMenuExistingFileItem = new MenuItem("Add Existing File");
 			addMenuExistingFileItem.Activated += AddButtonEventHandler;
 
 			// TODO: 'Add String' functionality is currently not implemented
 			addMenuStringItem = new MenuItem("Add String");
-			addMenuStringItem.State = StateType.Insensitive;
 			addMenuStringItem.Activated += AddButtonEventHandler;
 
 			typeMenuAudioItem = new MenuItem("Audio");
@@ -80,20 +85,27 @@ namespace MonoDevelop.ResxEditor
 			typeMenuStringItem.Activated += DropDownEventHandler;
 
 			// Menus
-			addMenu = new Menu{addMenuExistingFileItem, addMenuStringItem};
-			typeMenu = new Menu(){typeMenuAudioItem, typeMenuFileItem, typeMenuIconItem, typeMenuImageItem, typeMenuOtherItem, typeMenuStringItem};
+			addMenu = new Menu{ addMenuExistingFileItem, addMenuStringItem };
+			typeMenu = new Menu() {
+				typeMenuAudioItem,
+				typeMenuFileItem,
+				typeMenuIconItem,
+				typeMenuImageItem,
+				typeMenuOtherItem,
+				typeMenuStringItem
+			};
 
 			// MenuToolButtons
-			typeToolButton = new MenuToolButton(null, "Audio"){Menu = typeMenu};
+			typeToolButton = new MenuToolButton(null, "Audio"){ Menu = typeMenu };
 
-			addButton = new MenuToolButton(null, "Add"){Menu = addMenu};
+			addButton = new MenuToolButton(null, "Add"){ Menu = addMenu };
 			addButton.Clicked += AddButtonEventHandler;
 
 			removeButton = new ToolButton(null, "Remove");
 			removeButton.Clicked += RemoveButtonEventHandler;
 
 			// Toolbars
-			mainToolbar = new Toolbar(){typeToolButton, addButton, removeButton};
+			mainToolbar = new Toolbar(){ typeToolButton, addButton, removeButton };
 
 			// ListStores
 			audioListStore = new ListStore(typeof(string), typeof(string), typeof(string));
@@ -117,7 +129,7 @@ namespace MonoDevelop.ResxEditor
 			fileTreeView.AppendColumn("FileName/Path", new CellRendererText(), "text", 2).Resizable = true;
 			fileTreeView.AppendColumn("Comment", new CellRendererText(), "text", 3).Resizable = true;
 
-			iconTreeView = new TreeView (iconListStore);
+			iconTreeView = new TreeView(iconListStore);
 			iconTreeView.Selection.Mode = SelectionMode.Multiple;
 			iconTreeView.AppendColumn("Icon", new CellRendererPixbuf(), "pixbuf", 0).Resizable = true;  
 			iconTreeView.AppendColumn("ResourceName", new CellRendererText(), "text", 1).Resizable = true;
@@ -160,26 +172,26 @@ namespace MonoDevelop.ResxEditor
 			ResXDataNode[] nodes = new ResXDataNode[resxNodeList.Count];
 			resxNodeList.Values.CopyTo(nodes, 0);
 			return nodes;
-		}			
+		}
 
 		public void SetResxInfo(string fileName)
 		{
 			Clear();
 
-			using (ResXResourceReader reader = new ResXResourceReader(fileName)) 
+			using (ResXResourceReader reader = new ResXResourceReader(fileName))
 			{
 				reader.UseResXDataNodes = true;
 				reader.BasePath = IOPath.GetDirectoryName(fileName);
 				resxBaseName = reader.BasePath;
 
-				try 
+				try
 				{
-					foreach (DictionaryEntry entry in reader) 
+					foreach (DictionaryEntry entry in reader)
 					{		
 						AddItem((ResXDataNode)entry.Value);
 					}
-				} 
-				catch (ArgumentException) 
+				}
+				catch (ArgumentException)
 				{
 				}
 			}
@@ -199,7 +211,7 @@ namespace MonoDevelop.ResxEditor
 
 		void AddItem(ResXDataNode node)
 		{
-			if (resxNodeList.ContainsKey(node.Name)) 
+			if (resxNodeList.ContainsKey(node.Name))
 			{
 				node.Name = node.Name + "_Copy";
 				AddItem(node);
@@ -304,28 +316,42 @@ namespace MonoDevelop.ResxEditor
 				SwapTreeView(stringTreeView, sender);
 				return;
 			}
-		} 
+		}
 
 		void AddButtonEventHandler(object sender, EventArgs e)
 		{
-			if (sender == addMenuStringItem) 
+			if (sender == addMenuStringItem)
 			{
-				throw new NotImplementedException();
-			}
+				ResponseType response = (ResponseType)stringDialog.Run();
+				stringDialog.Hide();
 
-			if (openDialog.Run())
-			{
-				AddFileAsItem(openDialog.SelectedFile);
-				editorView.IsDirty = true;
+				if (response == ResponseType.Ok && !string.IsNullOrWhiteSpace(stringDialog.NodeName))
+				{
+					this.AddItem(new ResXDataNode(stringDialog.NodeName, stringDialog.NodeText));
+					editorView.IsDirty = true;
+				}
+
+				stringDialog.NodeText = "";
+				stringDialog.NodeName = "";
+				
 				return;
 			}
-		} 
+
+			if (sender == addMenuExistingFileItem)
+			{
+				if (openDialog.Run())
+				{
+					AddFileAsItem(openDialog.SelectedFile);
+					return;
+				}
+			}
+		}
 
 		void RemoveButtonEventHandler(object sender, EventArgs e)
 		{
 			object[] keys = DequeueSelectedRows((TreeView)scrolledWindow.Children[0]);
 
-			foreach (string key in keys) 
+			foreach (string key in keys)
 			{
 				resxNodeList.Remove(key);
 			}
@@ -353,19 +379,19 @@ namespace MonoDevelop.ResxEditor
 			TreeIter[] treeIterators = new TreeIter[selectedRows.Length];
 			object[] reternValues = new object[selectedRows.Length];
 
-			for (int index = 0; index < selectedRows.Length; index++) 
+			for (int index = 0; index < selectedRows.Length; index++)
 			{
 				listStore.GetIter(out treeIterators[index], selectedRows[index]);
 
 				int i = 0;
 
-				do 
+				do
 				{
 					reternValues[index] = listStore.GetValue(treeIterators[index], i++);
 				} while (reternValues[index].GetType() != typeof(string));
 			}
 
-			for (int index = 0; index < treeIterators.Length; index++) 
+			for (int index = 0; index < treeIterators.Length; index++)
 			{
 				listStore.Remove(ref treeIterators[index]);
 			}
