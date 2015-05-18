@@ -100,6 +100,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="ShowScrollbars">True</property>
+                            <property name="AcceptsTab">False</property>
                             <property name="Text" translatable="yes" />
                           </widget>
                         </child>
@@ -142,6 +143,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>
+                        <property name="AcceptsTab">False</property>
                         <property name="Text" translatable="yes" />
                         <property name="WrapMode">WordChar</property>
                       </widget>
@@ -153,6 +155,19 @@
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.Label" id="label3">
+                    <property name="MemberName" />
+                    <property name="Xalign">0</property>
+                    <property name="LabelProp" translatable="yes">Comment:</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
@@ -161,27 +176,17 @@
                       <widget class="Gtk.TextView" id="commentField">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
+                        <property name="ShowScrollbars">True</property>
+                        <property name="AcceptsTab">False</property>
                         <property name="Text" translatable="yes" />
+                        <property name="WrapMode">WordChar</property>
                       </widget>
                     </child>
                   </widget>
                   <packing>
                     <property name="PackType">End</property>
-                    <property name="Position">3</property>
-                    <property name="AutoSize">True</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label3">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Comment:</property>
-                  </widget>
-                  <packing>
                     <property name="Position">4</property>
                     <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>
@@ -204,7 +209,6 @@
         <child>
           <widget class="Gtk.Button" id="buttonCancel">
             <property name="MemberName" />
-            <property name="CanDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
@@ -221,6 +225,7 @@
           <widget class="Gtk.Button" id="buttonOk">
             <property name="MemberName" />
             <property name="CanDefault">True</property>
+            <property name="HasDefault">True</property>
             <property name="CanFocus">True</property>
             <property name="UseStock">True</property>
             <property name="Type">StockItem</property>
