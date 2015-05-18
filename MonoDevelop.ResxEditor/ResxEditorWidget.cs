@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Resources;
+using System.Linq;
 using Gdk;
 using Gtk;
 using MonoDevelop.Ide.Gui.Dialogs;
@@ -86,7 +87,7 @@ namespace MonoDevelop.ResxEditor
 
 			// Menus
 			addMenu = new Menu{ addMenuExistingFileItem, addMenuStringItem };
-			typeMenu = new Menu() {
+            typeMenu = new Menu() {
 				typeMenuAudioItem,
 				typeMenuFileItem,
 				typeMenuIconItem,
@@ -150,9 +151,9 @@ namespace MonoDevelop.ResxEditor
 
 			stringTreeView = new TreeView(stringListStore);
 			stringTreeView.Selection.Mode = SelectionMode.Multiple;
-			stringTreeView.AppendColumn("ResourceName", new CellRendererText(), "text", 0).Resizable = true;
-			stringTreeView.AppendColumn("Length", new CellRendererText(), "text", 1).Resizable = true;
-			stringTreeView.AppendColumn("Value", new CellRendererText(), "text", 2).Resizable = true;
+            stringTreeView.AppendColumn("ResourceName", new CellRendererText(), "text", 0).Resizable = true;
+            stringTreeView.AppendColumn("Length", new CellRendererText(), "text", 1).Resizable = true;
+            stringTreeView.AppendColumn("Value", new CellRendererText(), "text", 2).Resizable = true;
 			stringTreeView.AppendColumn("Comment", new CellRendererText(), "text", 3).Resizable = true;
 
 			// SetUp
@@ -186,9 +187,12 @@ namespace MonoDevelop.ResxEditor
 
 				try
 				{
-					foreach (DictionaryEntry entry in reader)
+                    foreach (var value in reader
+                        .OfType<DictionaryEntry>()
+                        .Select(en => (ResXDataNode)en.Value)
+                        .OrderBy(value => value.Name))
 					{		
-						AddItem((ResXDataNode)entry.Value);
+                        AddItem(value);
 					}
 				}
 				catch (ArgumentException)
