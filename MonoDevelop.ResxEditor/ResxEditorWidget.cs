@@ -40,7 +40,7 @@ namespace MonoDevelop.ResxEditor
 		MenuToolButton typeToolButton;
 		OpenFileDialog openDialog;
 		EditStringDialog stringDialog;
-		ResxEditorView editorView;
+        ResxEditorView editorView;
 		ToolButton removeButton;
 		Toolbar mainToolbar;
 		TreeView audioTreeView;
@@ -170,9 +170,7 @@ namespace MonoDevelop.ResxEditor
 
 		public ResXDataNode[] GetResxInfo(string fileName)
 		{
-			ResXDataNode[] nodes = new ResXDataNode[resxNodeList.Count];
-			resxNodeList.Values.CopyTo(nodes, 0);
-			return nodes;
+            return resxNodeList.Values.OrderBy(value => value.Name).ToArray();
 		}
 
 		public void SetResxInfo(string fileName)
@@ -325,30 +323,30 @@ namespace MonoDevelop.ResxEditor
 		void AddButtonEventHandler(object sender, EventArgs e)
 		{
 			if (sender == addMenuStringItem)
-			{
-				ResponseType response = (ResponseType)stringDialog.Run();
-				stringDialog.Hide();
+            {
+                ResponseType response = (ResponseType)stringDialog.Run();
+                stringDialog.Hide();
 
-				if (response == ResponseType.Ok && !string.IsNullOrWhiteSpace(stringDialog.NodeName))
-				{
-					this.AddItem(new ResXDataNode(stringDialog.NodeName, stringDialog.NodeText));
-					editorView.IsDirty = true;
-				}
+                if (response == ResponseType.Ok && !string.IsNullOrWhiteSpace(stringDialog.NodeName))
+                {
+                    this.AddItem(new ResXDataNode(stringDialog.NodeName, stringDialog.NodeText));
+                    editorView.IsDirty = true;
+                }
 
-				stringDialog.NodeText = "";
-				stringDialog.NodeName = "";
+                stringDialog.NodeText = "";
+                stringDialog.NodeName = "";
 				
-				return;
-			}
+                return;
+            }
 
 			if (sender == addMenuExistingFileItem)
-			{
-				if (openDialog.Run())
-				{
-					AddFileAsItem(openDialog.SelectedFile);
-					return;
-				}
-			}
+            {
+                if (openDialog.Run())
+                {
+                    AddFileAsItem(openDialog.SelectedFile);
+                    return;
+                }
+            }
 		}
 
 		void RemoveButtonEventHandler(object sender, EventArgs e)
