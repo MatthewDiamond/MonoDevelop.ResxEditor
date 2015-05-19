@@ -10,17 +10,23 @@ namespace MonoDevelop.ResxEditor
 		
 		private global::Gtk.HBox hbox1;
 		
-		private global::Gtk.Label label2;
+		private global::Gtk.Label label1;
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 		
-		private global::Gtk.TextView nameFeild;
+		private global::Gtk.TextView nameField;
 		
-		private global::Gtk.Label label1;
+		private global::Gtk.Label label2;
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		
-		private global::Gtk.TextView textFeild;
+		private global::Gtk.TextView textField;
+		
+		private global::Gtk.Label label3;
+		
+		private global::Gtk.ScrolledWindow scrolledwindow1;
+		
+		private global::Gtk.TextView commentField;
 		
 		private global::Gtk.Button buttonCancel;
 		
@@ -50,11 +56,11 @@ namespace MonoDevelop.ResxEditor
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.label2 = new global::Gtk.Label ();
-			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Name:");
-			this.hbox1.Add (this.label2);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label2]));
+			this.label1 = new global::Gtk.Label ();
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Name:");
+			this.hbox1.Add (this.label1);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label1]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
@@ -66,10 +72,11 @@ namespace MonoDevelop.ResxEditor
 			this.GtkScrolledWindow1.HscrollbarPolicy = ((global::Gtk.PolicyType)(2));
 			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
-			this.nameFeild = new global::Gtk.TextView ();
-			this.nameFeild.CanFocus = true;
-			this.nameFeild.Name = "nameFeild";
-			this.GtkScrolledWindow1.Add (this.nameFeild);
+			this.nameField = new global::Gtk.TextView ();
+			this.nameField.CanFocus = true;
+			this.nameField.Name = "nameField";
+			this.nameField.AcceptsTab = false;
+			this.GtkScrolledWindow1.Add (this.nameField);
 			this.hbox1.Add (this.GtkScrolledWindow1);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.GtkScrolledWindow1]));
 			w4.Position = 1;
@@ -79,11 +86,12 @@ namespace MonoDevelop.ResxEditor
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.label1 = new global::Gtk.Label ();
-			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Text");
-			this.vbox2.Add (this.label1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label1]));
+			this.label2 = new global::Gtk.Label ();
+			this.label2.Name = "label2";
+			this.label2.Xalign = 0F;
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Text:");
+			this.vbox2.Add (this.label2);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label2]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;
@@ -92,36 +100,62 @@ namespace MonoDevelop.ResxEditor
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.textFeild = new global::Gtk.TextView ();
-			this.textFeild.CanFocus = true;
-			this.textFeild.Name = "textFeild";
-			this.textFeild.WrapMode = ((global::Gtk.WrapMode)(3));
-			this.GtkScrolledWindow.Add (this.textFeild);
+			this.textField = new global::Gtk.TextView ();
+			this.textField.CanFocus = true;
+			this.textField.Name = "textField";
+			this.textField.AcceptsTab = false;
+			this.textField.WrapMode = ((global::Gtk.WrapMode)(3));
+			this.GtkScrolledWindow.Add (this.textField);
 			this.vbox2.Add (this.GtkScrolledWindow);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.GtkScrolledWindow]));
 			w8.Position = 2;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.label3 = new global::Gtk.Label ();
+			this.label3.Name = "label3";
+			this.label3.Xalign = 0F;
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Comment:");
+			this.vbox2.Add (this.label3);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label3]));
+			w9.Position = 3;
+			w9.Expand = false;
+			w9.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.scrolledwindow1 = new global::Gtk.ScrolledWindow ();
+			this.scrolledwindow1.CanFocus = true;
+			this.scrolledwindow1.Name = "scrolledwindow1";
+			this.scrolledwindow1.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child scrolledwindow1.Gtk.Container+ContainerChild
+			this.commentField = new global::Gtk.TextView ();
+			this.commentField.CanFocus = true;
+			this.commentField.Name = "commentField";
+			this.commentField.AcceptsTab = false;
+			this.commentField.WrapMode = ((global::Gtk.WrapMode)(3));
+			this.scrolledwindow1.Add (this.commentField);
+			this.vbox2.Add (this.scrolledwindow1);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.scrolledwindow1]));
+			w11.PackType = ((global::Gtk.PackType)(1));
+			w11.Position = 4;
 			this.alignment1.Add (this.vbox2);
 			w1.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
-			w10.Position = 0;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(w1 [this.alignment1]));
+			w13.Position = 0;
 			// Internal child MonoDevelop.ResxEditor.EditStringDialog.ActionArea
-			global::Gtk.HButtonBox w11 = this.ActionArea;
-			w11.Name = "dialog1_ActionArea";
-			w11.Spacing = 10;
-			w11.BorderWidth = ((uint)(5));
-			w11.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w14 = this.ActionArea;
+			w14.Name = "dialog1_ActionArea";
+			w14.Spacing = 10;
+			w14.BorderWidth = ((uint)(5));
+			w14.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
-			this.buttonCancel.CanDefault = true;
 			this.buttonCancel.CanFocus = true;
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.UseStock = true;
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w12 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w11 [this.buttonCancel]));
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w15 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.buttonCancel]));
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button ();
 			this.buttonOk.CanDefault = true;
@@ -131,15 +165,16 @@ namespace MonoDevelop.ResxEditor
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w13 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w11 [this.buttonOk]));
-			w13.Position = 1;
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w16 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w14 [this.buttonOk]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
+			this.DefaultHeight = 327;
+			this.buttonOk.HasDefault = true;
 			this.Hide ();
 		}
 	}
