@@ -1,7 +1,8 @@
 ﻿using System.Resources;
 using Gtk;
 using MonoDevelop.Ide.Gui;
-
+using System.IO;
+using System.Xml;
 
 namespace MonoDevelop.ResxEditor
 {
@@ -33,14 +34,19 @@ namespace MonoDevelop.ResxEditor
 		{
 			ResXDataNode[] nodes = widget.GetResxInfo(fileName);
 
-			using (ResXResourceWriter resxWriter = new ResXResourceWriter(fileName))
-			{
-				foreach (ResXDataNode node in nodes) 
-				{
+			using (var stream = new MemoryStream()) {
+				var resxWriter = new ResXResourceWriter(stream);
+				foreach (var node in nodes) {
 					resxWriter.AddResource(node);
 				}
-
 				resxWriter.Generate();
+				stream.Flush();
+
+				stream.Position = 0;
+				//pretty xml
+				var document = new XmlDocument();
+				document.Load(stream);
+				document.Save(fileName);
 			}
 
 			ContentName = fileName;
