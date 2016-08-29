@@ -1,1 +1,15 @@
-﻿<Properties StartupItem="MonoDevelop.ResxEditor.csproj" />
+﻿<Properties StartupConfiguration="{6A048A5A-8BF4-446E-AD3C-53BBF0A330CD}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoDevelop.ResxEditor/ResxEditorView.cs">
+    <Files>
+      <File FileName="MonoDevelop.ResxEditor/ResxEditorView.cs" Line="33" Column="20" />
+      <File FileName="MonoDevelop.ResxEditor/ResxEditorDisplayBinding.cs" Line="24" Column="3" />
+      <File FileName="gtk-gui/MonoDevelop.ResxEditor.EditStringDialog.cs" Line="40" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.MonoDevelop.ResxEditor PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

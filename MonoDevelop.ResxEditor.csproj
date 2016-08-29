@@ -30,7 +30,11 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="mdtool setup pack ${TargetName}" workingdir="${TargetDir}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>mdtool setup pack ${TargetName}</command>
+          <workingdir>${TargetDir}</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -79,6 +83,6 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
 </Project>
