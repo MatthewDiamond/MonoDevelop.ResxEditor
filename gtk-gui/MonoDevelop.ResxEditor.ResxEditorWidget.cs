@@ -5,41 +5,42 @@ namespace MonoDevelop.ResxEditor
 	public partial class ResxEditorWidget
 	{
 		private global::Gtk.VBox verticalBox;
-		
+
 		private global::Gtk.Alignment alignment;
-		
+
 		private global::Gtk.ScrolledWindow scrolledWindow;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget MonoDevelop.ResxEditor.ResxEditorWidget
-			global::Stetic.BinContainer.Attach (this);
+			global::Stetic.BinContainer.Attach(this);
 			this.Name = "MonoDevelop.ResxEditor.ResxEditorWidget";
 			// Container child MonoDevelop.ResxEditor.ResxEditorWidget.Gtk.Container+ContainerChild
-			this.verticalBox = new global::Gtk.VBox ();
+			this.verticalBox = new global::Gtk.VBox();
 			this.verticalBox.Name = "verticalBox";
 			// Container child verticalBox.Gtk.Box+BoxChild
-			this.alignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.alignment = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 			this.alignment.Name = "alignment";
 			this.alignment.LeftPadding = ((uint)(8));
 			this.alignment.TopPadding = ((uint)(16));
 			this.alignment.RightPadding = ((uint)(8));
 			this.alignment.BottomPadding = ((uint)(8));
 			// Container child alignment.Gtk.Container+ContainerChild
-			this.scrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.scrolledWindow = new global::Gtk.ScrolledWindow();
 			this.scrolledWindow.CanFocus = true;
 			this.scrolledWindow.Name = "scrolledWindow";
 			this.scrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-			this.alignment.Add (this.scrolledWindow);
-			this.verticalBox.Add (this.alignment);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.verticalBox [this.alignment]));
+			this.alignment.Add(this.scrolledWindow);
+			this.verticalBox.Add(this.alignment);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.verticalBox[this.alignment]));
 			w2.Position = 1;
-			this.Add (this.verticalBox);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.verticalBox);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
-			this.Hide ();
+			this.Hide();
 		}
 	}
 }
