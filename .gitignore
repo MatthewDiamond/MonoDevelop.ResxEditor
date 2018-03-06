@@ -3,3 +3,4 @@ obj/*
 packages/*
 MonoDevelop.ResxEditor.userprefs
 .droidres
+.vs
